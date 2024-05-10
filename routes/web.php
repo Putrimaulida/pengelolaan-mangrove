@@ -58,6 +58,8 @@ Route::prefix('dashboard_admin')->middleware(['auth', 'check.role:admin'])->grou
     Route::get('/pantai/view/{id}', [PantaiController::class, 'show']);
     Route::get('/pantai/view', [PantaiController::class, 'json'])->name('admin.data.pantai');
     Route::delete('/pantai/destroy/{id}', [PantaiController::class, 'destroy'])->name('admin.pantai.destroy');
+    Route::get('/pantai/verifikasilaporan/{id}', [PantaiController::class, 'verifikasi']);
+    Route::put('/pantai/verifikasikomen/{id}', [PantaiController::class, 'verifikasiLaporan']);
 
     // Citra
     Route::get('/citra', [CitraSatelitController::class, 'index'])->name('admin.citra');
@@ -89,4 +91,8 @@ Route::prefix('/dashboard_stakeholder')->middleware(['auth', 'check.role:stakeho
     Route::get('/', [DashboardStakeholder::class, 'index'])->name('stakeholder.dashboard');
     Route::get('/pantai', [PantaiStakeholderController::class, 'index'])->name('stakeholder.pantai');
     Route::get('/pantai/view', [PantaiStakeholderController::class, 'json'])->name('stakeholder.data.pantai');
+    Route::get('/pantai/edit/{id}', [PantaiStakeholderController::class, 'edit']);
+    Route::put('/pantai/update/{id}', [PantaiStakeholderController::class, 'update']);
+    Route::get('/pantai/view/{id}', [PantaiStakeholderController::class, 'show']);
 });
+

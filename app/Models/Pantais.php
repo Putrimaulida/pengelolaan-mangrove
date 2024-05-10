@@ -19,16 +19,13 @@ class Pantais extends Model
         'komen',
         'image',
         'video',
+        'status',
     ];
 
     public function citraSatelit()
     {
         return $this->hasMany(CitraSatelit::class);
     }
-    // public function jenisMangrove()
-    // {
-    //     return $this->belongsTo(JenisMangrove::class);
-    // }
 
     public function jenisMangroves()
     {

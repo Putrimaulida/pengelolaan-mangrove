@@ -28,7 +28,6 @@ class PantaiRequest extends FormRequest
             'lokasi_pantai' => 'required|string',
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
-            'komen' => 'required|string',
         ];
     }
 }

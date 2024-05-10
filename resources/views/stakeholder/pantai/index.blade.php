@@ -1,4 +1,4 @@
-@extends('stakeholder.layouts.index')
+@extends('stakeholder.layouts.main')
 @section('container')
 @if (session('info'))
 <div class="alert alert-info">
@@ -42,6 +42,7 @@
                         <th>Lokasi</th>
                         <th>Longitude</th>
                         <th>Latitude</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,6 +80,10 @@
                 {
                     data: 'latitude',
                     name: 'latitude'
+                },
+                {
+                    data: 'action',
+                    name: 'action'
                 },
             ]
         });

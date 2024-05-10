@@ -26,9 +26,11 @@ class PantaiController extends Controller
                     $editUrl = url('/dashboard_admin/pantai/edit/' . $row->id);
                     $viewUrl = url('/dashboard_admin/pantai/view/' . $row->id);
                     $deleteUrl = url('/dashboard_admin/pantai/destroy/' . $row->id); // Tambahkan URL untuk view
+                    $accUrl = url('/dashboard_admin/pantai/verifikasilaporan/' . $row->id);
                     return '<button type="button" class="btn btn-warning btn-sm" onclick="window.location.href=\'' . $editUrl . '\'"><i class="fas fa-edit"></i></button>
                             <button type="button" class="btn btn-info btn-sm" onclick="window.location.href=\'' . $viewUrl . '\'"><i class="fas fa-list"></i></button>
-                            <button type="button" class="btn btn-danger btn-sm delete-users" data-url="' . $deleteUrl . '"><i class="fas fa-trash-alt"></i></button>';
+                            <button type="button" class="btn btn-danger btn-sm delete-users" data-url="' . $deleteUrl . '"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href=\'' . $accUrl . '\'"><i class="fas fa-check"></i></button>';
                     // Tukar posisi tombol view dengan tombol delete
                 })
                 ->toJson();
@@ -52,7 +54,6 @@ class PantaiController extends Controller
             'lokasi_pantai' => 'required|string',
             'longitude' => 'required|string',
             'latitude' => 'required|string',
-            'komen' => 'required|string',
             'jenis_mangrove_id' => 'required|array', // Tipe data array
             'jenis_mangrove_id.*' => 'exists:jenis_mangroves,id', // Pastikan semua nilai ada di tabel jenis_mangroves
             'image' => 'required|file|max:2048', // Validasi ukuran maksimum gambar
@@ -77,9 +78,9 @@ class PantaiController extends Controller
             'lokasi_pantai' => $validatedData['lokasi_pantai'],
             'longitude' => $validatedData['longitude'],
             'latitude' => $validatedData['latitude'],
-            'komen' => $validatedData['komen'],
             'image' => $validatedData['image'],
             'video' => $validatedData['video'],
+            'status' => 0,
         ]);
 
         // Synchronize jenis mangrove
@@ -110,6 +111,12 @@ class PantaiController extends Controller
         $jenisMangrove = JenisMangrove::pluck('nama_ilmiah', 'id');
         return view('admin.pantai.edit', compact('pantai', 'jenisMangrove'));
     }
+
+    public function verifikasi($id)
+    {
+        $pantai = Pantais::findOrFail($id);
+        return view('admin.pantai.verifikasi', compact('pantai'));
+    }
     
     public function update(Request $request, $id)
     {
@@ -118,7 +125,6 @@ class PantaiController extends Controller
             'lokasi_pantai' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
-            'komen' => 'required',
             'image' => 'nullable|file|max:2048', // Validasi ukuran maksimum gambar
             'video' => 'nullable|file|max:10000',
             'jenis_mangrove_id' => 'required|array', // Tipe data array
@@ -130,7 +136,6 @@ class PantaiController extends Controller
         $pantai->lokasi_pantai = $validatedData['lokasi_pantai'];
         $pantai->longitude = $validatedData['longitude'];
         $pantai->latitude = $validatedData['latitude'];
-        $pantai->komen = $validatedData['komen'];
 
         // Periksa apakah gambar baru dikirim
         if ($request->hasFile('image')) {
@@ -154,39 +159,18 @@ class PantaiController extends Controller
         return redirect('/dashboard_admin/pantai')->with('success', 'Pantai updated successfully.');
     }
 
+    public function verifikasiLaporan(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'status' => 'required',
+        ]);
 
-    // public function update(Request $request, $id)
-    // {
-    //     $validatedData = $request->validated();
+        $pantai = Pantais::findOrFail($id);
+        $pantai->status = $validatedData['status'];
+        $pantai->save();
 
-    //     $pantai = Pantais::findOrFail($id);
-    //     $pantai->nama_pantai = $validatedData['nama_pantai'];
-    //     $pantai->lokasi_pantai = $validatedData['lokasi_pantai'];
-    //     $pantai->longitude = $validatedData['longitude'];
-    //     $pantai->latitude = $validatedData['latitude'];
-    //     $pantai->komen = $validatedData['komen'];
-
-    //     // Periksa apakah gambar baru dikirim
-    //     if ($request->hasFile('image')) {
-    //         Storage::disk('public')->delete($pantai->image);
-    //         $imagePath = $request->file('image')->store('images_pantai', 'public');
-    //         $pantai->image = $imagePath;
-    //         dd($imagePath);
-    //     }
-
-    //     // Periksa apakah video baru dikirim
-    //     if ($request->hasFile('video')) {
-    //         Storage::disk('public')->delete($pantai->video);
-    //         $videoPath = $request->file('video')->store('videos_pantai', 'public');
-    //         $pantai->video = $videoPath;
-    //         dd($videoPath);
-    //     }
-    //     dd($request->all());
-    //     $pantai->save();
-
-    //     return redirect('/dashboard_admin/pantai')->with('success', 'Pantai updated successfully.');
-    // }
-
+        return redirect('/dashboard_admin/pantai')->with('success', 'Verifikasi successfully.');
+    }
 
     public function destroy(string $id)
     {

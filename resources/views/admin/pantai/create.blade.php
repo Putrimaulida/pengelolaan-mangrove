@@ -74,10 +74,6 @@
                             <button type="button" class="btn btn-success" id="addJenisMangrove"><i class="fas fa-plus"></i>Tambah Jenis Mangrove</button>
                         </div>
                         <div class="form-group">
-                            <label for="komen">Komen:</label>
-                            <input type="text" name="komen" id="komen" class="form-control" required>
-                        </div>
-                        <div class="form-group">
                             <label for="image">Gambar:</label>
                             <input type="file" name="image" id="image" class="form-control" required>
                             <small id="image" class="form-text" text-muted>Maksimal file ukuran: 2048 Kb (Mb)</small>

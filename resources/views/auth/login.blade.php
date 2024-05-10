@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html>
-
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -10,11 +8,16 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
     <link href='/css/login.css' rel='stylesheet'>
 </head>
 
 <body>
+    @if(session('error'))
+        <div class="alert alert-danger mt-2">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
@@ -70,21 +73,12 @@
                                     </button>
                                 </div>
                             </div>
-
-
                             <div class="row px-3 mb-4">
                                 <div class="custom-control custom-checkbox custom-control-inline">
                                     <input id="remember" type="checkbox" name="remember"
                                         {{ old('remember') ? 'checked' : '' }} class="custom-control-input">
                                     <label for="remember" class="custom-control-label text-sm">Remember me</label>
                                 </div>
-                            </div>
-                            <div class="row mb-3 px-3">
-                                <small class="font-weight-bold">Belum Punya Akun? <a class="text-danger mr-3"
-                                        href="{{ route('register') }}">Register</a></small>
-                                <!-- <small class="font-weight-bold">Lupa?<a href="#" class="text-danger"
-                                        data-toggle="modal" data-target="#forgotModal"> Forgot</a>
-                                </small> -->
                             </div>
                             <div class="row mb-4 px-3">
                                 <button type="submit" class="btn btn-blue text-center mr-2">Login</button>
@@ -97,12 +91,5 @@
             </div>
         </div>
     </form>
-
-    <!-- {{-- <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'>
-    </script> --}} -->
-
-
-
 </body>
-
 </html>

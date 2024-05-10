@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label for="password">Password:</label>
                                 <div class="input-group">
-                                    <input type="password" name="password" id="password" class="form-control" value="{{ $users->password }}" required>
+                                    <input type="password" name="password" id="password" class="form-control" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="fa fa-eye" id="togglePassword"></i>

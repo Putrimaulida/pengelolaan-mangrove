@@ -1,4 +1,4 @@
-@extends('stakeholder.layouts.index')
+@extends('stakeholder.layouts.main')
 @section('container')
     <!-- Begin Page Content -->
     <div class="container-fluid">

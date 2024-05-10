@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('stakeholder.layouts.main')
 @section('container')
 <div class="container">
     <div class="row justify-content-center">
