@@ -23,7 +23,8 @@
                         <div class="form-group">
                             <label for="komen">Komen:</label>
                             <input type="text" name="komen" id="komen" class="form-control" value="{{ $pantai->komen }}" required>
-                        <!-- Submit Button -->
+                        </div>
+                            <!-- Submit Button -->
                         <div class="row mt-3">
                             <div class="col-md-12">
                                 <a href="{{ url('/dashboard_stakeholder/pantai') }}" class="btn btn-secondary">Back</a>

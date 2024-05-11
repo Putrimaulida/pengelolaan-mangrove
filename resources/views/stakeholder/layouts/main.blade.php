@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Dashboard Admin</title>
+    <title>Dashboard Stakeholder</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('SbAdmin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
@@ -89,7 +89,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('stakeholder.analisis') }}">
                     <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                     <span>Hasil Analisis</span></a>
             </li>
@@ -101,10 +101,6 @@
                     <span>Logout</span>
                 </a>
             </li>
-
-
-
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

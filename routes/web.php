@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardStakeholder;
 use App\Http\Controllers\DataLapangController;
 use App\Http\Controllers\HasilAnalisisController;
+use App\Http\Controllers\HasilAnalisisStakeholderController;
 use App\Http\Controllers\JenisMangroveController;
 use App\Http\Controllers\StakeholderController;
 use App\Http\Controllers\PantaiController;
@@ -94,5 +95,10 @@ Route::prefix('/dashboard_stakeholder')->middleware(['auth', 'check.role:stakeho
     Route::get('/pantai/edit/{id}', [PantaiStakeholderController::class, 'edit']);
     Route::put('/pantai/update/{id}', [PantaiStakeholderController::class, 'update']);
     Route::get('/pantai/view/{id}', [PantaiStakeholderController::class, 'show']);
+
+    // Hasil Analisis
+    Route::get('/analisisdata', [HasilAnalisisStakeholderController::class, 'index'])->name('stakeholder.analisis');
+    Route::post('/analisisdata/count', [HasilAnalisisStakeholderController::class, 'countRecommended'])->name('countRecommended');
+    Route::post('/analisisdata/count-all', [HasilAnalisisStakeholderController::class, 'countAllRecommended'])->name('countAllRecommended');
 });
 
