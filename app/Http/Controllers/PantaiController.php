@@ -30,7 +30,7 @@ class PantaiController extends Controller
                     return '<button type="button" class="btn btn-warning btn-sm" onclick="window.location.href=\'' . $editUrl . '\'"><i class="fas fa-edit"></i></button>
                             <button type="button" class="btn btn-info btn-sm" onclick="window.location.href=\'' . $viewUrl . '\'"><i class="fas fa-list"></i></button>
                             <button type="button" class="btn btn-danger btn-sm delete-users" data-url="' . $deleteUrl . '"><i class="fas fa-trash-alt"></i></button>
-                            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href=\'' . $accUrl . '\'"><i class="fas fa-check"></i></button>';
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href=\'' . $accUrl . '\'"><i class="fas fa-check"></i></button>';
                     // Tukar posisi tombol view dengan tombol delete
                 })
                 ->toJson();

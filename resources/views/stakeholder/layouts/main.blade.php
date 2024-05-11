@@ -90,18 +90,6 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fa fa-folder-open" aria-hidden="true"></i>
-                    <span>Citra Satelit</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa fa-id-card" aria-hidden="true"></i>
-                    <span>Lapang</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">
                     <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                     <span>Hasil Analisis</span></a>
             </li>
