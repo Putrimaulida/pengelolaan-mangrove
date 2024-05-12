@@ -204,7 +204,8 @@ class HasilAnalisisController extends Controller
         $lastYear = $dataCitra->max('tahun');
         $lastYearArea = $luasanTahun[$lastYear];
         $trendConclusion = ($result < $lastYearArea) ? 'negatif' : 'positif';
-        $conclusion = "Hasil analisis menunjukkan luasan mangrove pada tahun 2024 adalah <strong>$result</strong>. Dengan kondisi mangrove mengalami trend <strong>$trendConclusion</strong>.";
+        $year = date('Y');
+        $conclusion = "Hasil analisis menunjukkan luasan mangrove pada tahun $year adalah <strong>$result</strong>. Dengan kondisi mangrove mengalami trend <strong>$trendConclusion</strong>.";
 
         return response()->json([
             'success' => true,
