@@ -133,6 +133,7 @@
                             });
 
                             myChart.update();
+                            $('#conclusion').attr('hidden', true);
                         } else {
                             alert('Gagal menghitung rekomendasi.');
                         }
