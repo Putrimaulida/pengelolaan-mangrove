@@ -96,9 +96,8 @@ Route::prefix('/dashboard_stakeholder')->middleware(['auth', 'check.role:stakeho
     Route::put('/pantai/update/{id}', [PantaiStakeholderController::class, 'update']);
     Route::get('/pantai/view/{id}', [PantaiStakeholderController::class, 'show']);
 
-    // Hasil Analisis
-    Route::get('/analisisdata', [HasilAnalisisStakeholderController::class, 'index'])->name('stakeholder.analisis');
-    Route::post('/analisisdata/count', [HasilAnalisisStakeholderController::class, 'countRecommended'])->name('countRecommended');
-    Route::post('/analisisdata/count-all', [HasilAnalisisStakeholderController::class, 'countAllRecommended'])->name('countAllRecommended');
+    // // Hasil Analisis
+    // Route::get('/analisisdata', [HasilAnalisisStakeholderController::class, 'index'])->name('stakeholder.analisis');
+    // Route::post('/analisisdata/count', [HasilAnalisisStakeholderController::class, 'countRecommended'])->name('countRecommended');
+    // Route::post('/analisisdata/count-all', [HasilAnalisisStakeholderController::class, 'countAllRecommended'])->name('countAllRecommended');
 });
-

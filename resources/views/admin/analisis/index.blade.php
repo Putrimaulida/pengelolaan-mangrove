@@ -133,9 +133,6 @@
                             });
 
                             myChart.update();
-                            var conclusionHTML = pantaiData[0].conclusion;
-                            $('#text-conclusion').html(conclusionHTML);
-                            $('#conclusion').removeAttr('hidden');
                         } else {
                             alert('Gagal menghitung rekomendasi.');
                         }
