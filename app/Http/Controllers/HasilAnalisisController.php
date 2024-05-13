@@ -36,7 +36,9 @@ class HasilAnalisisController extends Controller
     public function index()
     {
         $dataRekomendasiPantai = Pantais::all();
-        return view('admin.analisis.index', compact('dataRekomendasiPantai'));
+        $allYears = CitraSatelit::select('tahun')->distinct()->pluck('tahun');
+
+        return view('admin.analisis.index', compact('dataRekomendasiPantai', 'allYears'));
     }
 
     /**
@@ -125,50 +127,77 @@ class HasilAnalisisController extends Controller
             ->with('success', 'Rekomendasi deleted successfully');
     }
 
-    // public function countRecommended(Request $request)
-    // {
-    //     $dataCitra = CitraSatelit::where('pantai_id', $request->pantai_id)->get();
-    //     $dataTahun = CitraSatelit::where('pantai_id', $request->pantai_id)->pluck('tahun')->unique();
-    //     $tahunArray = $dataTahun->toArray();
-    //     sort($tahunArray);
-
-    //     $sum_x = 0;
-    //     $sum_y = 0;
-    //     $sum_xy = 0;
-    //     $sum_x_squared = 0;
-
-    //     foreach ($dataCitra as $data) {
-    //         $sum_x += $data->tahun;
-    //         $sum_y += $data->luasan;
-    //         $sum_xy += $data->tahun * $data->luasan;
-    //         $sum_x_squared += $data->tahun * $data->tahun;
-    //     }
-
-    //     $n = count($dataCitra);
-    //     $b = (($n * $sum_xy) - ($sum_x * $sum_y)) / (($n * $sum_x_squared) - ($sum_x * $sum_x));
-    //     $a = ($sum_y - ($b * $sum_x)) / $n;
-    //     $Y = $a + ($b * $dataCitra->max('tahun'));
-    //     $countYear = count($dataCitra);
-    //     $result = $Y + $b * $countYear;
-
-    // return response()->json([
-    //     'success' => true,
-    //     'data' => [
-    //         'pantai' => $dataCitra->first()->pantai->nama_pantai,
-    //         'tahun' => $tahunArray,
-    //         'result' => $result
-    //     ]
-    // ]);
-    // }
-
     public function countRecommended(Request $request)
     {
         if ($request->pantai_id == 'all') {
+            if ($request->tahun == 'all') {
+                $dataCitra = CitraSatelit::all();
+            } else {
+                $dataCitra = CitraSatelit::where('tahun', $request->tahun)->get();
+            }
+
+            $groupedData = $dataCitra->groupBy('pantai_id');
+            $result = [];
+
+            foreach ($groupedData as $pantaiId => $dataPantai) {
+                $sum_x = 0;
+                $sum_y = 0;
+                $sum_xy = 0;
+                $sum_x_squared = 0;
+
+                foreach ($dataPantai as $data) {
+                    $sum_x += $data->tahun;
+                    $sum_y += $data->luasan;
+                    $sum_xy += $data->tahun * $data->luasan;
+                    $sum_x_squared += $data->tahun * $data->tahun;
+                }
+
+                $n = count($dataPantai);
+                // $b = (($n * $sum_xy) - ($sum_x * $sum_y)) / (($n * $sum_x_squared) - ($sum_x * $sum_x)); // Rumus Lama
+                if ($n != 0) {
+                    $denominator = ($n * $sum_x_squared) - ($sum_x * $sum_x);
+                    if ($denominator != 0) {
+                        $b = (($n * $sum_xy) - ($sum_x * $sum_y)) / $denominator;
+                    } else {
+                        $b = 0;
+                    }
+                } else {
+                    $b = 0;
+                }
+                $a = ($sum_y - ($b * $sum_x)) / $n;
+                $Y = $a + ($b * $dataPantai->max('tahun'));
+                $countYear = count($dataPantai);
+                $resultForYear = $Y + $b * $countYear;
+
+                $resultFor2024 = [$dataPantai->max('tahun') + 1 => $resultForYear];
+                $luasanTahun = $dataPantai->groupBy('tahun')->map(function ($item) {
+                    return $item->sum('luasan');
+                });
+                $borderColor = $this->generateRandomColor();
+
+                $result[] = [
+                    'pantai' => $dataPantai->first()->pantai->nama_pantai,
+                    'luasan_tiap_tahun' => $luasanTahun->toArray(),
+                    'result' => $resultFor2024,
+                    'borderColor' => $borderColor,
+                ];
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => $result
+            ]);
         }
-        $dataCitra = CitraSatelit::where('pantai_id', $request->pantai_id)->get();
-        $dataTahun = CitraSatelit::where('pantai_id', $request->pantai_id)->pluck('tahun')->unique();
-        $tahunArray = $dataTahun->toArray();
-        sort($tahunArray);
+
+        if ($request->tahun == 'all') {
+            $dataCitra = CitraSatelit::where('pantai_id', $request->pantai_id)->get();
+            $dataTahun = CitraSatelit::where('pantai_id', $request->pantai_id)->pluck('tahun')->unique();
+            $tahunArray = $dataTahun->toArray();
+            sort($tahunArray);
+        } else {
+            $dataCitra = CitraSatelit::where('pantai_id', $request->pantai_id)->where('tahun', $request->tahun)->get();
+            $tahunArray = [$request->tahun];
+        }
 
         $luasanTahun = [];
 
@@ -194,7 +223,17 @@ class HasilAnalisisController extends Controller
         }
 
         $n = count($dataCitra);
-        $b = (($n * $sum_xy) - ($sum_x * $sum_y)) / (($n * $sum_x_squared) - ($sum_x * $sum_x));
+        // $b = (($n * $sum_xy) - ($sum_x * $sum_y)) / (($n * $sum_x_squared) - ($sum_x * $sum_x)); // Rumus Lama
+        if ($n != 0) {
+            $denominator = ($n * $sum_x_squared) - ($sum_x * $sum_x);
+            if ($denominator != 0) {
+                $b = (($n * $sum_xy) - ($sum_x * $sum_y)) / $denominator;
+            } else {
+                $b = 0;
+            }
+        } else {
+            $b = 0;
+        }
         $a = ($sum_y - ($b * $sum_x)) / $n;
         $Y = $a + ($b * $dataCitra->max('tahun'));
         $countYear = count($dataCitra);
@@ -227,52 +266,5 @@ class HasilAnalisisController extends Controller
         $alpha = 1;
 
         return "rgba($r, $g, $b, $alpha)";
-    }
-
-    public function countAllRecommended()
-    {
-        $dataCitra = CitraSatelit::all();
-
-        $groupedData = $dataCitra->groupBy('pantai_id');
-        $result = [];
-
-        foreach ($groupedData as $pantaiId => $dataPantai) {
-            $sum_x = 0;
-            $sum_y = 0;
-            $sum_xy = 0;
-            $sum_x_squared = 0;
-
-            foreach ($dataPantai as $data) {
-                $sum_x += $data->tahun;
-                $sum_y += $data->luasan;
-                $sum_xy += $data->tahun * $data->luasan;
-                $sum_x_squared += $data->tahun * $data->tahun;
-            }
-
-            $n = count($dataPantai);
-            $b = (($n * $sum_xy) - ($sum_x * $sum_y)) / (($n * $sum_x_squared) - ($sum_x * $sum_x));
-            $a = ($sum_y - ($b * $sum_x)) / $n;
-            $Y = $a + ($b * $dataPantai->max('tahun'));
-            $countYear = count($dataPantai);
-            $resultForYear = $Y + $b * $countYear;
-
-            $resultFor2024 = [$dataPantai->max('tahun') + 1 => $resultForYear];
-            $luasanTahun = $dataPantai->groupBy('tahun')->map(function ($item) {
-                return $item->sum('luasan');
-            });
-            $borderColor = $this->generateRandomColor();
-
-            $result[] = [
-                'pantai' => $dataPantai->first()->pantai->nama_pantai,
-                'luasan_tiap_tahun' => $luasanTahun->toArray(),
-                'result' => $resultFor2024,
-                'borderColor' => $borderColor,
-            ];
-        }
-
-        return response()->json([
-            'success' => true,
-            'data' => $result
-        ]);
     }
 }

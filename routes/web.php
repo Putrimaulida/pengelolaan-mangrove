@@ -85,7 +85,6 @@ Route::prefix('dashboard_admin')->middleware(['auth', 'check.role:admin'])->grou
     // Hasil Analisis
     Route::get('/analisisdata', [HasilAnalisisController::class, 'index'])->name('admin.analisis');
     Route::post('/analisisdata/count', [HasilAnalisisController::class, 'countRecommended'])->name('countRecommended');
-    Route::post('/analisisdata/count-all', [HasilAnalisisController::class, 'countAllRecommended'])->name('countAllRecommended');
 });
 
 Route::prefix('/dashboard_stakeholder')->middleware(['auth', 'check.role:stakeholder'])->group(function () {

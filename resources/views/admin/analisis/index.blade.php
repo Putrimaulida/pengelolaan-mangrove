@@ -58,7 +58,10 @@
             <div class="form-group col-md-3">
                 <label for="tahun">Tentukan Tahun:</label>
                 <select name="tahun" id="tahun" class="form-control">
-                    <option value="">All</option>
+                    <option value="all">All</option>
+                    @foreach ($allYears as $year)
+                        <option value="{{ $year }}">{{ $year }}</option>
+                    @endforeach
                 </select>
             </div>
             <!-- Submit Button -->
@@ -89,14 +92,16 @@
     <script>
         function countRekomendasi() {
             var pantai_id = $('#pantai_id').val();
+            var tahun = $('#tahun').val();
 
             if (pantai_id == 'all') {
                 $.ajax({
-                    url: "{{ route('countAllRecommended') }}",
+                    url: "{{ route('countRecommended') }}",
                     type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
                         "pantai_id": pantai_id,
+                        "tahun": tahun
                     },
                     success: function(response) {
                         if (response.success == true) {
@@ -149,6 +154,7 @@
                     data: {
                         "_token": "{{ csrf_token() }}",
                         "pantai_id": pantai_id,
+                        "tahun": tahun
                     },
                     success: function(response) {
                         if (response.success == true) {
