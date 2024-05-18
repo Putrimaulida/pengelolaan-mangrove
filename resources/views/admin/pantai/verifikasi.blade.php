@@ -26,6 +26,16 @@
                             <input type="text"  class="form-control" value="{{ $pantai->komen }}" readonly>
                         </div>
                         <div class="form-group">
+                        <p><strong>Gambar:</strong></p>
+                            <img src="{{ asset('storage/' . $pantai->image) }}" alt="Gambar Pantai" width="300">
+                            <p><strong></strong></p>
+                            <p><strong>Video:</strong></p>
+                            <video controls width="300" height="auto">
+                                <source src="{{ asset('storage/' . $pantai->video) }}" type="video/mp4">
+                                Browser Anda tidak mendukung tag video.
+                            </video>
+                        </div>
+                        <div class="form-group">
                             <label for="status">Status:</label><br>
                             <input type="radio" id="diterima" name="status" value="1" {{ $pantai->status == 1 ? 'checked' : '' }}>
                             <label for="diterima">Diterima</label><br>

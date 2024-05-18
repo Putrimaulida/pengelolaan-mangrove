@@ -62,9 +62,26 @@ class PantaiStakeholderController extends Controller
     {
         $validatedData = $request->validate([
             'komen' => 'required',
+            'image' => 'nullable|file|max:2048', // Validasi ukuran maksimum gambar
+            'video' => 'nullable|file|max:10000',
         ]);
 
         $pantai = Pantais::findOrFail($id);
+         // Periksa apakah gambar baru dikirim
+         if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($pantai->image);
+            $imagePath = $request->file('image')->store('images_pantai', 'public');
+            $pantai->image = $imagePath;
+            //dd($imagePath);
+        }
+
+        // Periksa apakah video baru dikirim
+        if ($request->hasFile('video')) {
+            Storage::disk('public')->delete($pantai->video);
+            $videoPath = $request->file('video')->store('videos_pantai', 'public');
+            $pantai->video = $videoPath;
+            //dd($videoPath);
+        }
         $pantai->komen = $validatedData['komen'];
         $pantai->save();
 

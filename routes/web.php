@@ -10,6 +10,7 @@ use App\Http\Controllers\JenisMangroveController;
 use App\Http\Controllers\StakeholderController;
 use App\Http\Controllers\PantaiController;
 use App\Http\Controllers\PantaiStakeholderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -85,6 +86,10 @@ Route::prefix('dashboard_admin')->middleware(['auth', 'check.role:admin'])->grou
     // Hasil Analisis
     Route::get('/analisisdata', [HasilAnalisisController::class, 'index'])->name('admin.analisis');
     Route::post('/analisisdata/count', [HasilAnalisisController::class, 'countRecommended'])->name('countRecommended');
+
+    // Profile
+    Route::get('/profile', [UserController::class, 'edit'])->name('admin.profile.edit');
+    Route::put('/profile/{id}', [UserController::class, 'update'])->name('admin.profile.update');
 });
 
 Route::prefix('/dashboard_stakeholder')->middleware(['auth', 'check.role:stakeholder'])->group(function () {
@@ -95,8 +100,8 @@ Route::prefix('/dashboard_stakeholder')->middleware(['auth', 'check.role:stakeho
     Route::put('/pantai/update/{id}', [PantaiStakeholderController::class, 'update']);
     Route::get('/pantai/view/{id}', [PantaiStakeholderController::class, 'show']);
 
-    // // Hasil Analisis
-    // Route::get('/analisisdata', [HasilAnalisisStakeholderController::class, 'index'])->name('stakeholder.analisis');
-    // Route::post('/analisisdata/count', [HasilAnalisisStakeholderController::class, 'countRecommended'])->name('countRecommended');
-    // Route::post('/analisisdata/count-all', [HasilAnalisisStakeholderController::class, 'countAllRecommended'])->name('countAllRecommended');
+    // Hasil Analisis
+    Route::get('/analisisdata', [HasilAnalisisStakeholderController::class, 'index'])->name('stakeholder.analisis');
+    Route::post('/analisisdata/count', [HasilAnalisisStakeholderController::class, 'countRecommendedStakeholder'])->name('countRecommendedStakeholder');
+    Route::post('/analisisdata/count-all', [HasilAnalisisStakeholderController::class, 'countAllRecommendedStakeholder'])->name('countAllRecommendedStakeholder');
 });

@@ -92,7 +92,7 @@
 
             if (pantai_id == 'all') {
                 $.ajax({
-                    url: "{{ route('countAllRecommended') }}",
+                    url: "{{ route('countAllRecommendedStakeholder') }}",
                     type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",
@@ -146,7 +146,7 @@
                 });
             } else {
                 $.ajax({
-                    url: "{{ route('countRecommended') }}",
+                    url: "{{ route('countRecommendedStakeholder') }}",
                     type: "POST",
                     data: {
                         "_token": "{{ csrf_token() }}",

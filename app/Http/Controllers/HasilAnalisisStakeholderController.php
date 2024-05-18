@@ -40,16 +40,6 @@ class HasilAnalisisStakeholderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.analisis.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -125,43 +115,7 @@ class HasilAnalisisStakeholderController extends Controller
             ->with('success', 'Rekomendasi deleted successfully');
     }
 
-    // public function countRecommended(Request $request)
-    // {
-    //     $dataCitra = CitraSatelit::where('pantai_id', $request->pantai_id)->get();
-    //     $dataTahun = CitraSatelit::where('pantai_id', $request->pantai_id)->pluck('tahun')->unique();
-    //     $tahunArray = $dataTahun->toArray();
-    //     sort($tahunArray);
-
-    //     $sum_x = 0;
-    //     $sum_y = 0;
-    //     $sum_xy = 0;
-    //     $sum_x_squared = 0;
-
-    //     foreach ($dataCitra as $data) {
-    //         $sum_x += $data->tahun;
-    //         $sum_y += $data->luasan;
-    //         $sum_xy += $data->tahun * $data->luasan;
-    //         $sum_x_squared += $data->tahun * $data->tahun;
-    //     }
-
-    //     $n = count($dataCitra);
-    //     $b = (($n * $sum_xy) - ($sum_x * $sum_y)) / (($n * $sum_x_squared) - ($sum_x * $sum_x));
-    //     $a = ($sum_y - ($b * $sum_x)) / $n;
-    //     $Y = $a + ($b * $dataCitra->max('tahun'));
-    //     $countYear = count($dataCitra);
-    //     $result = $Y + $b * $countYear;
-
-    // return response()->json([
-    //     'success' => true,
-    //     'data' => [
-    //         'pantai' => $dataCitra->first()->pantai->nama_pantai,
-    //         'tahun' => $tahunArray,
-    //         'result' => $result
-    //     ]
-    // ]);
-    // }
-
-    public function countRecommended(Request $request)
+    public function countRecommendedStakeholder(Request $request)
     {
         if ($request->pantai_id == 'all') {
         }
@@ -229,7 +183,7 @@ class HasilAnalisisStakeholderController extends Controller
         return "rgba($r, $g, $b, $alpha)";
     }
 
-    public function countAllRecommended()
+    public function countAllRecommendedStakeholder()
     {
         $dataCitra = CitraSatelit::all();
 

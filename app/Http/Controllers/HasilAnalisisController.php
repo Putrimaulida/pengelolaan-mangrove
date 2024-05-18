@@ -153,7 +153,6 @@ class HasilAnalisisController extends Controller
                 }
 
                 $n = count($dataPantai);
-                // $b = (($n * $sum_xy) - ($sum_x * $sum_y)) / (($n * $sum_x_squared) - ($sum_x * $sum_x)); // Rumus Lama
                 if ($n != 0) {
                     $denominator = ($n * $sum_x_squared) - ($sum_x * $sum_x);
                     if ($denominator != 0) {
@@ -244,7 +243,7 @@ class HasilAnalisisController extends Controller
         $lastYearArea = $luasanTahun[$lastYear];
         $trendConclusion = ($result < $lastYearArea) ? 'negatif' : 'positif';
         $year = date('Y');
-        $conclusion = "Hasil analisis menunjukkan luasan mangrove pada tahun $year adalah <strong>$result</strong>. Dengan kondisi mangrove mengalami trend <strong>$trendConclusion</strong>.";
+        $conclusion = "Hasil analisis menunjukkan luasan mangrove pada tahun <strong>$year</strong> adalah <strong>$result</strong>. Dengan kondisi mangrove mengalami trend <strong>$trendConclusion</strong>.";
 
         return response()->json([
             'success' => true,
