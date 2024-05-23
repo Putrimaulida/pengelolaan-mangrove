@@ -24,8 +24,22 @@ class JenisMangroveRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_keluarga' => 'required|string|max:255',
+            'nama_keluarga_select' => 'nullable|string|max:255',
+            'nama_keluarga_manual' => 'nullable|string|max:255',
             'nama_ilmiah' => 'required|string|max:255',
         ];
     }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if (!$this->nama_keluarga_select && !$this->nama_keluarga_manual) {
+                $validator->errors()->add('nama_keluarga', 'You must fill either the existing family or the new family name.');
+            }
+            if ($this->nama_keluarga_select && $this->nama_keluarga_manual) {
+                $validator->errors()->add('nama_keluarga', 'You cannot fill both fields.');
+            }
+        });
+    }
 }
+

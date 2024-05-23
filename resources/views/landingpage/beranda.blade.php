@@ -9,8 +9,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -23,15 +22,11 @@
     <!-- <link href="assets/img/favicon.png" rel="icon"> -->
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -224,18 +219,23 @@
             /* Warna teks untuk tombol transparan */
             cursor: pointer;
         }
+
         /* CSS untuk mengatur lebar maksimum gambar dalam hero section */
         .hero-img img {
-            max-width: 100%; /* Membatasi lebar gambar agar tidak melebihi lebar container */
-            height: auto; /* Memastikan tinggi gambar disesuaikan secara proporsional */
+            max-width: 100%;
+            /* Membatasi lebar gambar agar tidak melebihi lebar container */
+            height: auto;
+            /* Memastikan tinggi gambar disesuaikan secara proporsional */
         }
-        #slider{
+
+        #slider {
             padding: 10px 0 10px;
             position: relative;
             width: 300px;
             height: 300px;
         }
-        #slider img{
+
+        #slider img {
             width: 300px;
             height: 300px;
             position: absolute;
@@ -252,7 +252,7 @@
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo me-auto"><a href="beranda"style="text-decoration: none;">Mangrove.In</a></h1>
+            <h1 class="logo me-auto"><a href="beranda" style="text-decoration: none;">Mangrove.In</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
 
             <nav id="navbar" class="navbar">
@@ -275,18 +275,10 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
-                    data-aos="fade-up" data-aos-delay="200">
+                <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
                     <h1 style="font-size:34px;">Pengelolaan Vegetasi Mangorve</h1>
                     <h1>Mangrove.In Siap Melayani!</h1>
                     <h2>Informasi Seputar Perkembangan dan Pengelolaan Vegetasi Mangrove Kabupaten Malang Selatan</h2>
-                    <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="#"
-                            class="btn-get-started"style="text-decoration: none; margin-right: 10px;">Get
-                            Started</a>
-                        <a href="#" class="btn-get-started" style="text-decoration: none;" data-bs-toggle="modal"
-                            data-bs-target="#trackComplaintModal">Track Complaint</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -310,11 +302,9 @@
         <!-- ======= About Us Section ======= -->
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
-
                 <div class="section-title">
                     <h2>About Us</h2>
                 </div>
-
                 <div class="row content">
                     <div class="col-lg-6">
                         <p style="text-align: justify;">
@@ -358,222 +348,354 @@
         <!-- ======= Why Us Section ======= -->
         <section id="pantai" class="why-us section-bg">
             <div class="container-fluid" data-aos="fade-up">
-
                 <div class="row">
-
-                    <div
-                        class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
-
+                    <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
                         <div class="content">
                             <h3>Data <strong>Pantai</strong></h3>
                             <p style="text-align: justify;">
-                                untuk memfasilitasi dan meningkatkan partisipasi masyarakat dalam menyampaikan pengaduan
-                                terkait berbagai masalah, pelayanan publik, atau isu sosial kepada pihak berwenang atau
-                                instansi yang berwenang untuk menanganinya
+                                Berikut data pantai yang ada di Kabupaten Malang Selatan
                             </p>
                         </div>
-
                         <div class="accordion-list">
                             <ul>
+                                @foreach($dataPantai as $nomor => $pantai)
                                 <li>
-                                    <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"
-                                        style="text-decoration: none;"><span>01</span> Meningkatkan Transparansi <i
-                                            class="bx bx-chevron-down icon-show"></i><i
-                                            class="bx bx-chevron-up icon-close"></i></a>
-                                    <div id="accordion-list-1" class="collapse show"
-                                        data-bs-parent=".accordion-list">
+                                    <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-{{ $pantai->id }}" style="text-decoration: none;"><span>{{$nomor + 1}}</span> {{$pantai -> nama_pantai}} <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                                    <div id="accordion-list-{{ $pantai->id }}" class="collapse" data-bs-parent=".accordion-list">
                                         <p style="text-align: justify;">
-                                            SIPMA bertujuan untuk menciptakan transparansi dalam proses penanganan
-                                            pengaduan. Dengan adanya sistem yang terbuka, informasi mengenai status dan
-                                            penyelesaian pengaduan dapat diakses oleh masyarakat secara mudah dan jelas.
+                                            Alamat : {{$pantai->lokasi_pantai}}
+                                        </p>
+                                        <p style="text-align: justify;">
+                                            Keterangan : {{$pantai->nama_ilmiah}}
+                                        </p>
+                                        <p style="text-align: justify;">
+                                            Keterangan : {{$pantai->komen}}
+                                        </p>
+                                        <p style="text-align: justify;">
+                                            <img src="{{ asset('storage/' . $pantai->image) }}" alt="{{ $pantai->nama_pantai }}" class="pantai-image" style="max-width: 300px; height: auto;">
                                         </p>
                                     </div>
                                 </li>
-
-                                <li>
-                                    <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"
-                                        style="text-decoration: none;"><span>02</span> Memperkuat Akuntabilitas
-                                        <i class="bx bx-chevron-down icon-show"></i><i
-                                            class="bx bx-chevron-up icon-close"></i></a>
-                                    <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
-                                        <p style="text-align: justify;">
-                                            Tujuan lain dari SIPMA adalah meningkatkan akuntabilitas lembaga pemerintah
-                                            dan institusi publik. Dengan adanya mekanisme pengaduan yang efektif, pihak
-                                            berwenang harus merespons laporan masyarakat dan bertanggung jawab atas
-                                            penanganan masalah yang dihadapi oleh warga.
-                                        </p>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"
-                                        style="text-decoration: none;"><span>03</span> Memberdayakan Masyarakat
-                                        <i class="bx bx-chevron-down icon-show"></i><i
-                                            class="bx bx-chevron-up icon-close"></i></a>
-                                    <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
-                                        <p style="text-align: justify;">
-                                            SIPMA bertujuan untuk memberdayakan masyarakat dalam menyampaikan keluhan
-                                            dan permasalahan yang mereka alami. Dengan adanya sistem ini, masyarakat
-                                            merasa didengar dan memiliki sarana untuk berpartisipasi aktif dalam proses
-                                            perbaikan dan pengawasan pelayanan publik.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed"
-                                        style="text-decoration: none;"><span>04</span> Meningkatkan Kualitas Pelayanan
-                                        Publik
-                                        <i class="bx bx-chevron-down icon-show"></i><i
-                                            class="bx bx-chevron-up icon-close"></i></a>
-                                    <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
-                                        <p style="text-align: justify;">
-                                            Melalui SIPMA, lembaga pemerintah dan institusi publik dapat mendapatkan
-                                            umpan balik dari masyarakat secara langsung. Informasi ini menjadi bahan
-                                            evaluasi dan perbaikan untuk meningkatkan kualitas layanan yang diberikan
-                                            kepada masyarakat.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a data-bs-toggle="collapse" data-bs-target="#accordion-list-5" class="collapsed"
-                                        style="text-decoration: none;"><span>05</span> Mendukung Pemantauan dan
-                                        Evaluasi
-                                        <i class="bx bx-chevron-down icon-show"></i><i
-                                            class="bx bx-chevron-up icon-close"></i></a>
-                                    <div id="accordion-list-5" class="collapse" data-bs-parent=".accordion-list">
-                                        <p style="text-align: justify;">
-                                            Dengan mencatat pengaduan dan respon yang diberikan, SIPMA memberikan basis
-                                            data yang berharga untuk pemantauan dan evaluasi kinerja pelayanan publik.
-                                            Hal ini membantu mengidentifikasi pola permasalahan, kebutuhan prioritas,
-                                            dan mencari solusi yang lebih baik.
-                                        </p>
-                                    </div>
-                                </li>
-
+                                @endforeach
                             </ul>
                         </div>
-
                     </div>
-
-                    <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img"
-                        style='background-image: url("assets/img/why-us.png");' data-aos="zoom-in"
-                        data-aos-delay="150">&nbsp;</div>
+                    <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
                 </div>
 
             </div>
         </section><!-- End Why Us Section -->
 
-
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-
         <!-- ======= Services Section ======= -->
         <section id="mangrove" class="contact">
-            <div class="container" data-aos="fade-up">
+            <div class="container">
 
                 <div class="section-title">
                     <h2>Jenis Mangrove</h2>
-                    <p>Sistem Pengaduan Masyarakat (SIPMA)! Kami menyediakan berbagai layanan untuk
-                        mempermudah Anda dalam mengajukan pengaduan dan mendapatkan bantuan yang Anda butuhkan. Di bawah
-                        ini, Anda dapat menemukan berbagai fitur yang kami tawarkan. Kami siap melayani dengan sepenuh
-                        hati.❤️</p>
+                    <p>Sistem Pengelolaan Vegetasi Mangrove!</p>
                 </div>
-
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in"
-                        data-aos-delay="100">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bx-cast"></i></div>
-                            <h4><a>Aksesibilitas Online</a></h4>
-                            <p style="text-align: justify;">Pelayanan SIPMA memberikan kemudahan akses bagi masyarakat
-                                untuk mengakses layanan
-                                publik secara online dari perangkat mereka, seperti komputer atau ponsel pintar, kapan
-                                saja dan di mana saja.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
-                        data-aos-delay="200">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bx-layer"></i></div>
-                            <h4><a>Integrasi Layanan</a></h4>
-                            <p style="text-align: justify;">Pelayanan SIPMA mengintegrasikan berbagai layanan publik
-                                dalam satu platform,
-                                memungkinkan masyarakat untuk mengakses berbagai layanan dari instansi yang berbeda
-                                secara terpadu. Dengan demikian, masyarakat tidak perlu berurusan dengan beberapa
-                                platform atau mengulang proses yang sama saat menggunakan layanan yang berbeda.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
-                        data-aos-delay="300">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bx-rss"></i></div>
-                            <h4><a>Pemantauan Status Permohonan</a></h4>
-                            <p style="text-align: justify;">Masyarakat dapat memantau status permohonan atau proses
-                                pelayanan mereka secara real-time melalui platform online, sehingga mereka mengetahui
-                                perkembangan prosesnya dengan mudah dan transparan.kami berharap dapat memberikan
-                                layanan yang lebih baik dan memperkuat
-                                hubungan yang saling menguntungkan antara pihak berwenang dan masyarakat.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
-                        data-aos-delay="400">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bx-key"></i></div>
-                            <h4><a>Keamanan Data</a></h4>
-                            <p style="text-align: justify;">Pelayanan SIPMA dirancang dengan sistem keamanan yang kuat
-                                untuk melindungi data pribadi
-                                dan informasi sensitif masyarakat dari akses yang tidak sah.</p>
-                        </div>
-                    </div>
-
+                <div class="accordion-list">
+                    <ul>
+                        @foreach($dataMangrove as $mangrove)
+                        <li>
+                            <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1" style="text-decoration: none;"><span>{{$nomor + 1}}</span> {{$pantai -> nama_pantai}} <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                                <p style="text-align: justify;">
+                                    {{$mangrove -> nama_ilmiah}}
+                                </p>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
-
             </div>
-        </section><!-- End Services Section -->
+        </section>
 
-        <!-- ======= Cta Section ======= -->
-        
-
-        <!-- ======= Portfolio Section ======= -->
-
-        <!-- ======= Team Section ======= -->
         <section id="rekomendasi" class="team section-bg">
-            <div class="container" data-aos="fade-up">
-
+            <div class="container">
                 <div class="section-title">
-                    <h2>Rekomendasi</h2>
-                    <p style="text-align: justify;">Team Sistem Pengaduan Masyarakat kami adalah sebuah tim lintas
-                        dinas yang bertanggung jawab atas
-                        pengelolaan dan pengembangan Sistem Pengaduan Masyarakat. Tim ini dibentuk dengan tujuan untuk
-                        memberikan platform yang efisien dan responsif bagi masyarakat dalam menyampaikan pengaduan,
-                        keluhan, atau masukan terkait layanan publik dan isu-isu komunitas.
+                    <h2>Hasil Analisis</h2>
 
-                        Anggota dalam tim berasal dari berbagai departemen atau dinas yang memiliki keterkaitan dengan
-                        isu-isu yang sering dihadapi oleh masyarakat. Kami memiliki perwakilan dari berbagai bidang,
-                        seperti IT, hukum, layanan publik, dan hubungan masyarakat. Kehadiran anggota dari berbagai
-                        dinas memungkinkan kami untuk merancang solusi yang holistik dan berorientasi pada kebutuhan
-                        masyarakat.
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
 
-                        Sebagai tim kolaboratif, kami menjunjung tinggi transparansi, kecepatan, dan akurasi dalam
-                        menangani setiap pengaduan yang masuk. Kami terus berupaya meningkatkan layanan dan efisiensi
-                        dalam menangani pengaduan agar setiap masukan masyarakat dapat direspon dengan tepat waktu dan
-                        diberikan tindakan yang sesuai.
+                    <div class="form-group col-md-3">
+                        <label for="pantai_id">Pilih Nama Pantai:</label>
+                        <select name="pantai_id" id="pantai_id" class="form-control" required>
+                            <option value="all">All</option>
+                            @foreach ($dataRekomendasiPantai as $pantai)
+                            <option value="{{ $pantai->id }}">
+                                {{ $pantai->nama_pantai }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                        Selain itu, kami bekerja sama dengan berbagai instansi dan mitra eksternal untuk menyediakan
-                        saluran pengaduan yang lebih luas dan aksesibel bagi masyarakat. Kami berkomitmen untuk
-                        memastikan bahwa setiap pengaduan diperlakukan secara adil, amanah, dan kerahasiaannya terjaga.
+                    <div class="form-group col-md-3">
+                        <label for="tahun">Tentukan Tahun:</label>
+                        <select name="tahun" id="tahun" class="form-control">
+                            <option value="all">All</option>
+                            @foreach ($allYears as $year)
+                            <option value="{{ $year }}">{{ $year }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            {{-- <a href="#" class="btn btn-secondary">Back</a> --}}
+                            <button type="submit" onclick="countRekomendasi()" class="btn btn-primary">Kirim</button>
+                        </div>
+                    </div>
 
-                        Sebagai garda terdepan dalam menghadapi isu-isu masyarakat, kami menganggap tanggung jawab kami
-                        sebagai kesempatan untuk melayani dan membantu memajukan kehidupan masyarakat. Kami siap untuk
-                        menghadapi perubahan dan tantangan dalam menerapkan teknologi terbaru dan inovasi dalam Sistem
-                        Pengaduan Masyarakat demi memberikan pelayanan yang lebih baik dan bermanfaat bagi seluruh
-                        komunitas yang kami layani.</p>
+                    <script>
+                        var myChart;
+
+                        function countRekomendasi() {
+                            var pantai_id = $('#pantai_id').val();
+                            var tahun = $('#tahun').val();
+
+                            if (pantai_id == 'all') {
+                                $.ajax({
+                                    url: "{{ route('countRecommendedBeranda') }}",
+                                    type: "POST",
+                                    data: {
+                                        "_token": "{{ csrf_token() }}",
+                                        "pantai_id": pantai_id,
+                                        "tahun": tahun
+                                    },
+                                    success: function(response) {
+                                        if (response.success == true) {
+                                            var pantaiData = response.data;
+                                            var labels = [];
+                                            var data = [];
+
+                                            pantaiData.forEach(function(dataPantai) {
+                                                var pantai = dataPantai.pantai;
+                                                var luasan = dataPantai.luasan_tiap_tahun;
+
+                                                labels.push(pantai);
+                                                data.push(luasan[Object.keys(luasan)[0]]);
+                                            });
+
+                                            if (myChart) {
+                                                myChart.destroy();
+                                            }
+
+                                            var dataset = {
+                                                label: 'Luasan Pantai',
+                                                data: data,
+                                                borderColor: 'blue',
+                                                borderWidth: 1
+                                            };
+
+                                            var options = {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true,
+                                                        title: {
+                                                            display: true,
+                                                            text: 'Luasan (km²)'
+                                                        }
+                                                    },
+                                                    x: {
+                                                        title: {
+                                                            display: true,
+                                                            text: 'Nama Pantai'
+                                                        },
+                                                        ticks: {
+                                                            autoSkip: false
+                                                        }
+                                                    }
+                                                }
+                                            };
+
+                                            var ctx = document.getElementById('myChart').getContext('2d');
+                                            myChart = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: labels,
+                                                    datasets: [dataset]
+                                                },
+                                                options: options
+                                            });
+
+                                            $('#conclusion').attr('hidden', true);
+                                        } else {
+                                            alert('Gagal menghitung rekomendasi.');
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        alert('Terjadi kesalahan: ' + error);
+                                    }
+                                });
+                            } else {
+                                if (tahun == 'all') {
+                                    $.ajax({
+                                        url: "{{ route('countRecommendedBeranda') }}",
+                                        type: "POST",
+                                        data: {
+                                            "_token": "{{ csrf_token() }}",
+                                            "pantai_id": pantai_id,
+                                            "tahun": tahun
+                                        },
+                                        success: function(response) {
+                                            if (response.success == true) {
+                                                var data = response.data;
+                                                var labels = Object.keys(data.luasan_tiap_tahun);
+                                                var pantai = data.pantai;
+                                                var luasan_tiap_tahun = Object.values(data.luasan_tiap_tahun);
+                                                var result = data.result;
+                                                var borderColor = data.borderColor;
+                                                var luasan_lapang = data.data_lapang;
+                                                var lapanganData = [];
+
+                                                labels.forEach(function(tahun) {
+                                                    if (luasan_lapang.hasOwnProperty(tahun)) {
+                                                        lapanganData.push(luasan_lapang[tahun]);
+                                                    } else {
+                                                        lapanganData.push(0);
+                                                    }
+                                                });
+
+                                                var chartData = {
+                                                    labels: labels,
+                                                    datasets: [{
+                                                            label: "Luasan Mangrove",
+                                                            data: luasan_tiap_tahun,
+                                                            borderColor: borderColor,
+                                                            borderWidth: 1,
+                                                            fill: false,
+                                                            type: 'line'
+                                                        },
+                                                        {
+                                                            label: "Luasan Lapangan",
+                                                            data: lapanganData,
+                                                            borderColor: 'rgba(54, 162, 235, 1)',
+                                                            borderWidth: 1,
+                                                            fill: false,
+                                                            type: 'line'
+                                                        }
+                                                    ]
+                                                };
+
+                                                if (result) {
+                                                    var tahun_prediksi = Object.keys(result)[0];
+                                                    if (!labels.includes(tahun_prediksi)) {
+                                                        chartData.labels.push(tahun_prediksi);
+                                                        chartData.datasets[0].data.push(result[tahun_prediksi]);
+                                                        if (luasan_lapang.hasOwnProperty(tahun_prediksi)) {
+                                                            chartData.datasets[1].data.push(luasan_lapang[tahun_prediksi]);
+                                                        } else {
+                                                            chartData.datasets[1].data.push(
+                                                                0);
+                                                        }
+                                                    }
+                                                }
+
+                                                myChart.data = chartData;
+                                                myChart.update();
+
+                                                var conclusionHTML = response.data.conclusion;
+                                                $('#text-conclusion').html(conclusionHTML);
+                                                $('#conclusion').removeAttr('hidden');
+                                            } else {
+                                                alert('Gagal menghitung rekomendasi.');
+                                            }
+                                        },
+                                        error: function(xhr, status, error) {
+                                            alert('Terjadi kesalahan: ' + error);
+                                        }
+                                    });
+                                } else {
+                                    $.ajax({
+                                        url: "{{ route('countRecommendedBeranda') }}",
+                                        type: "POST",
+                                        data: {
+                                            "_token": "{{ csrf_token() }}",
+                                            "pantai_id": pantai_id,
+                                            "tahun": tahun
+                                        },
+                                        success: function(response) {
+                                            if (response.success == true) {
+                                                var data = response.data;
+                                                var tahun = Object.keys(data.luasan_tiap_tahun);
+                                                myChart.data.labels = [];
+                                                myChart.data.datasets = [];
+                                                var pantai = data.pantai;
+                                                var luasan_tiap_tahun = Object.values(data.luasan_tiap_tahun);
+                                                var result = data.result;
+                                                var borderColor = data.borderColor;
+
+                                                var tahun_prediksi = Object.keys(result)[0];
+                                                if (!tahun.includes(tahun_prediksi)) {
+                                                    tahun.push(tahun_prediksi);
+                                                    luasan_tiap_tahun.push(result[tahun_prediksi]);
+                                                }
+
+                                                myChart.data.labels = tahun;
+                                                myChart.data.datasets.push({
+                                                    label: pantai,
+                                                    data: luasan_tiap_tahun,
+                                                    borderColor: borderColor,
+                                                    borderWidth: 1,
+                                                    fill: false
+                                                });
+                                                myChart.update();
+
+                                                var conclusionHTML = response.data.conclusion;
+                                                $('#text-conclusion').html(conclusionHTML);
+                                                $('#conclusion').removeAttr('hidden');
+                                            } else {
+                                                alert('Gagal menghitung rekomendasi.');
+                                            }
+                                        },
+                                        error: function(xhr, status, error) {
+                                            alert('Terjadi kesalahan: ' + error);
+                                        }
+                                    });
+                                }
+                            }
+                        }
+
+                        var ctx = document.getElementById('myChart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: [],
+                                datasets: [{
+                                    label: '',
+                                    data: [],
+                                    borderColor: '',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+
+                    <!-- Grafik -->
+                    <h5 class="text-center"><b>Grafik Data Citra Satelit</b></h5>
+                    <canvas id="myChart" width="400" height="200"></canvas>
+                    <div class="row mt-5" id="conclusion" hidden>
+                        <div class="col">
+                            <h1>Kesimpulan :</h1>
+                            <p id="text-conclusion"></p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -585,8 +707,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="tugasModal" tabindex="-1" role="dialog"
-                        aria-labelledby="tugasModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="tugasModal" tabindex="-1" role="dialog" aria-labelledby="tugasModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -626,123 +747,6 @@
 
             </div>
         </section><!-- End Team Section -->
-
-        <!-- ======= Pricing Section ======= -->
-        <!-- End Pricing Section -->
-
-        <!-- ======= Services Section ======= -->
-        <section id="statistik" class="services section-bg" style="background-color: #37517E;">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title" style="color: #fff;">
-                    <h2 style="color: #fff;">Grafik Data</h2>
-                    <p>Statistik Sistem Pengaduan Masyarakat adalah kumpulan data yang mencatat laporan pengaduan dari
-                        masyarakat terkait masalah pelayanan publik dan berbagai isu sosial. Angka-angka ini
-                        mencerminkan partisipasi masyarakat dalam menyampaikan keluhan serta respons pihak dinas terkait
-                        dalam menangani laporan tersebut.</p>
-                </div>
-
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
-                        data-aos-delay="100">
-                        <div class="icon-box">
-                            <div class="text-center">
-                                <div class="icon"><i class="bx bx-envelope"></i></div>
-                            </div>
-                            <h4 style="font-size:25px" align="center"><a>Complaints Pending</a></h4>
-                            <p style="font-size:40px" align="center"><span id="pendingCounter">0</span></p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
-                        data-aos-delay="200">
-                        <div class="icon-box">
-                            <div class="text-center">
-                                <div class="icon"><i class="bx bx-time"></i></div>
-                            </div>
-                            <h4 style="font-size:22px" align="center"><a>Complaints In Progress</a></h4>
-                            <p style="font-size:40px" align="center"><span id="inProgressCounter">0</span></p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
-                        data-aos-delay="300">
-                        <div class="icon-box">
-                            <div class="text-center">
-                                <div class="icon"><i class="bx bx-task"></i></div>
-                            </div>
-                            <h4 style="font-size:24px" align="center"><a>Complaints Resolved</a></h4>
-                            <p style="font-size:40px" align="center"><span id="resolvedCounter">0</span></p>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
-                        data-aos-delay="400">
-                        <div class="icon-box">
-                            <div class="text-center">
-                                <div class="icon"><i class="bx bx-file"></i></div>
-                            </div>
-                            <h4 style="font-size:20px" align="center"><a>Jumlah Laporan Sekarang</a></h4>
-                            <p style="font-size:40px" align="center"><span id="totalCounter">0</span></p>
-                        </div>
-                    </div>
-
-                    <script>
-                        // Fungsi untuk memulai penghitungan dari 0 ke nilai akhir (finalValue) dengan durasi yang ditentukan
-                        function startCounting(targetElement, finalValue, duration) {
-                            let currentValue = 0;
-                            const incrementValue = finalValue / duration;
-                            const element = document.getElementById(targetElement);
-
-                            // Fungsi untuk memperbarui nilai hitungan
-                            function updateCounter() {
-                                currentValue += incrementValue;
-                                element.textContent = Math.round(currentValue);
-
-                                // Memeriksa apakah mencapai finalValue, jika belum, lanjutkan pembaruan
-                                if (currentValue < finalValue) {
-                                    requestAnimationFrame(updateCounter);
-                                } else {
-                                    element.textContent = finalValue; // Pastikan finalValue tercapai
-                                }
-                            }
-
-                            updateCounter(); // Memulai animasi penghitungan
-                        }
-
-                        // Fungsi untuk mengatur penghitungan saat elemen berada dalam tampilan
-                        function setupCounting(targetElement, value, duration) {
-                            let hasStarted = false;
-                            const element = document.getElementById(targetElement);
-
-                            // Fungsi untuk menangani peristiwa scroll dan memulai penghitungan
-                            function scrollHandler() {
-                                const rect = element.getBoundingClientRect();
-                                if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                                    // Elemen berada dalam tampilan
-                                    if (!hasStarted) {
-                                        hasStarted = true;
-                                        startCounting(targetElement, value, duration);
-                                    }
-                                } else {
-                                    hasStarted = false;
-                                }
-                            }
-
-                            window.addEventListener('scroll', scrollHandler);
-                            scrollHandler(); // Pengecekan awal jika elemen sudah berada dalam tampilan
-                        }
-
-                        // Panggil fungsi setupCounting untuk setiap elemen dengan durasi 600ms
-                        
-                    </script>
-                </div>
-            </div>
-        </section><!-- End Services Section -->
-
-        <!-- ======= Frequently Asked Questions Section ======= -->
-
-
 
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
@@ -796,8 +800,7 @@
                                         <button id="toggleControls" class="btn btn-info">Toggle Controls</button>
                                         <div id="controls" class="d-none">
                                             <div class="input-group mb-3">
-                                                <input type="text" id="search" class="form-control"
-                                                    placeholder="Cari Departemen">
+                                                <input type="text" id="search" class="form-control" placeholder="Cari Departemen">
                                                 <button onclick="searchDepartment()" class="btn btn-primary">
                                                     <i class="fas fa-search"></i>
                                                 </button>
@@ -807,8 +810,7 @@
                                                 </button>
                                             </div>
                                             <label class="custom-checkbox">Tampilkan Marker
-                                                <input type="checkbox" id="toggleMarker" checked
-                                                    onchange="toggleMarker()">
+                                                <input type="checkbox" id="toggleMarker" checked onchange="toggleMarker()">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -880,7 +882,7 @@
                                         }
                                     }
                                     // Iterasi melalui data departemen dan menambahkan marker jika koordinat dan nama tersedia
-                                   
+
                                     // Menentukan pilihan lapisan peta
                                     var baseLayers = {
                                         "Streets": streets,
@@ -947,19 +949,18 @@
                             mudah mengetahui status dan tahapan penanganan pengaduan mereka, menciptakan transparansi
                             dan keterlibatan dalam proses tersebut.</p>
                         <form id="trackComplaintForm" action="{{ route('track.complaint') }}" method="post">
-                            @csrf
-                            <input type="text" name="code_ticket" placeholder="Enter Code Number" required>
-                            <button type="reset"><i class="fas fa-times"></i></button>
-                            <!-- Tombol Clear dengan ikon Font Awesome "times" -->
-                            <button type="submit">Track</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        @csrf
+        <input type="text" name="code_ticket" placeholder="Enter Code Number" required>
+        <button type="reset"><i class="fas fa-times"></i></button>
+        <!-- Tombol Clear dengan ikon Font Awesome "times" -->
+        <button type="submit">Track</button>
+        </form>
+        </div>
+        </div>
+        </div>
         </div> --}}
 
-        <div class="modal fade" id="trackResultModal" tabindex="-1" role="dialog"
-            aria-labelledby="trackResultModalLabel" aria-hidden="true">
+        <div class="modal fade" id="trackResultModal" tabindex="-1" role="dialog" aria-labelledby="trackResultModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1019,14 +1020,10 @@
                         <h4>Temukan Kami di Media Sosial</h4>
                         <p>Ikuti kami untuk informasi terbaru dan interaksi lebih lanjut.</p>
                         <div class="social-links mt-3">
-                            <a href="https://www.twitter.com/pemkabpasuruan_" class="twitter"><i
-                                    class="bx bxl-twitter"></i></a>
-                            <a href="https://www.facebook.com/pasuruankab.go.id/" class="facebook"><i
-                                    class="bx bxl-facebook"></i></a>
-                            <a href="https://www.instagram.com/pemkabpasuruan/" class="instagram"><i
-                                    class="bx bxl-instagram"></i></a>
-                            <a href="https://www.youtube.com/@ILOVEPASTV" class="google-plus"><i
-                                    class="bx bxl-youtube"></i></a>
+                            <a href="https://www.twitter.com/pemkabpasuruan_" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="https://www.facebook.com/pasuruankab.go.id/" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="https://www.instagram.com/pemkabpasuruan/" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="https://www.youtube.com/@ILOVEPASTV" class="google-plus"><i class="bx bxl-youtube"></i></a>
                             {{-- <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> --}}
                         </div>
                     </div>
@@ -1050,17 +1047,16 @@
     </footer><!-- End Footer -->
 
     <div id="preloader"></div>
-    <a href="" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Tombol "like" -->
     <!-- Tombol "like" -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script>
         $(document).ready(function() {
+
             // Fungsi doAction() digunakan untuk melakukan tindakan (like atau dislike) pada suatu polling.
             function doAction(action, pollId) {
                 $.ajax({
@@ -1192,7 +1188,76 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     @include('landingpage.trackticketjs')
+    @push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('pantai_id').addEventListener('change', fetchData);
+            document.getElementById('tahun').addEventListener('change', fetchData);
 
+
+
+            function fetchData() {
+                const pantaiId = document.getElementById('pantai_id').value;
+                const tahun = document.getElementById('tahun').value;
+
+                fetch(`/countRecommendedBeranda?pantai_id=${pantaiId}&tahun=${tahun}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            renderChart(data.data);
+                            if (data.data.conclusion) {
+                                document.getElementById('conclusion').hidden = false;
+                                document.getElementById('text-conclusion').innerHTML = data.data.conclusion;
+                            }
+                        }
+                    });
+            }
+
+            function renderChart(data) {
+                const ctx = document.getElementById('myChart').getContext('2d');
+                const labels = Object.keys(data.luasan_tiap_tahun);
+                const dataset = Object.values(data.luasan_tiap_tahun);
+
+                const chartData = {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Luasan Mangrove',
+                        data: dataset,
+                        borderColor: data.borderColor,
+                        borderWidth: 1,
+                        fill: false
+                    }]
+                };
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: chartData,
+                    options: {
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Tahun'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Luasan (ha)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Initial fetch to populate chart
+            fetchData();
+        });
+    </script>
+
+    @endpush
 </body>
 
 </html>

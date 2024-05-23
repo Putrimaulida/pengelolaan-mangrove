@@ -14,25 +14,23 @@ class DataLapangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-     public function json()
-     {
+    public function json()
+    {
         $users = DataLapang::select(['id', 'tahun', 'luasan', 'pantai_id'])
-        ->with('pantai:id,nama_pantai') // Load relasi pantai
-        ->get();
-         $index = 1;
-         return DataTables::of($users)
-             ->addColumn('DT_RowIndex', function ($data) use (&$index) {
-                 return $index++; // Menambahkan nomor urutan baris
-             })
-             ->addColumn('action', function ($row) {
-                 $editUrl = url('/dashboard_admin/lapang/edit/' . $row->id);
-                 $deleteUrl = url('/dashboard_admin/lapang/destroy/' . $row->id);
-                 return '<button type="button" class="btn btn-primary" onclick="window.location.href=\'' . $editUrl . '\'"><i class="fas fa-edit"></i></button> <button type="button" class="btn btn-danger delete-users" data-url="' . $deleteUrl . '"><i class="fas fa-trash-alt"></i></button>';
-             })
-             ->toJson();
-     }
-     
+            ->with('pantai:id,nama_pantai') // Load relasi pantai
+            ->get();
+        $index = 1;
+        return DataTables::of($users)
+            ->addColumn('DT_RowIndex', function ($data) use (&$index) {
+                return $index++; // Menambahkan nomor urutan baris
+            })
+            ->addColumn('action', function ($row) {
+                $editUrl = url('/dashboard_admin/lapang/edit/' . $row->id);
+                $deleteUrl = url('/dashboard_admin/lapang/destroy/' . $row->id);
+                return '<button type="button" class="btn btn-primary" onclick="window.location.href=\'' . $editUrl . '\'"><i class="fas fa-edit"></i></button> <button type="button" class="btn btn-danger delete-users" data-url="' . $deleteUrl . '"><i class="fas fa-trash-alt"></i></button>';
+            })
+            ->toJson();
+    }
 
     public function index()
     {
@@ -41,7 +39,7 @@ class DataLapangController extends Controller
     }
 
     /**
-     * Menampilkan formulir untuk membuat jenis mangrove baru.
+     * Menampilkan formulir untuk membuat data lapang baru.
      *
      * @return \Illuminate\Http\Response
      */
@@ -51,9 +49,8 @@ class DataLapangController extends Controller
         return view('admin.lapang.create', compact('dataPantai'));
     }
 
-
     /**
-     * Menyimpan jenis mangrove yang baru dibuat ke dalam database.
+     * Menyimpan data lapang yang baru dibuat ke dalam database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -63,16 +60,24 @@ class DataLapangController extends Controller
         $request->validate([
             'tahun' => 'required|integer',
             'luasan' => 'required|numeric',
+            'pantai_id' => 'required|exists:pantais,id',
         ]);
+
+        // Periksa apakah kombinasi pantai_id dan tahun sudah ada
+        if (DataLapang::where('pantai_id', $request->pantai_id)
+                      ->where('tahun', $request->tahun)
+                      ->exists()) {
+            return redirect()->back()->withErrors(['error' => 'Data lapang dengan pantai dan tahun tersebut sudah ada.'])->withInput();
+        }
 
         DataLapang::create([
             'tahun' => $request->tahun,
             'luasan' => $request->luasan,
-            'pantai_id' =>$request->pantai_id,
+            'pantai_id' => $request->pantai_id,
         ]);
 
         return redirect()->route('admin.lapang')
-                         ->with('success', 'Data Laapang created successfully.');
+                         ->with('success', 'Data Lapang berhasil ditambahkan.');
     }
 
     /**
@@ -99,17 +104,26 @@ class DataLapangController extends Controller
     public function update(DataLapangRequest $request, $id)
     {
         $request->validate([
-            'pantai_id' => 'required',
-            'tahun' => 'required',
-            'luasan' => 'required'
+            'pantai_id' => 'required|exists:pantais,id',
+            'tahun' => 'required|integer',
+            'luasan' => 'required|numeric',
         ]);
-    
+
         $dataLapang = DataLapang::findOrFail($id);
+
+        // Periksa apakah kombinasi pantai_id dan tahun sudah ada, kecuali data saat ini
+        if (DataLapang::where('pantai_id', $request->pantai_id)
+                      ->where('tahun', $request->tahun)
+                      ->where('id', '!=', $id)
+                      ->exists()) {
+            return redirect()->back()->withErrors(['error' => 'Data lapang dengan pantai dan tahun tersebut sudah ada.'])->withInput();
+        }
+
         $dataLapang->pantai_id = $request->input('pantai_id');
         $dataLapang->tahun = $request->input('tahun');
         $dataLapang->luasan = $request->input('luasan');
         $dataLapang->save();
-    
+
         return redirect()->route('admin.lapang')->with('success', 'Data Lapang berhasil diupdate!');
     }
 
@@ -124,7 +138,7 @@ class DataLapangController extends Controller
         $dataLapang = DataLapang::findOrFail($id);
         $dataLapang->delete();
 
-        return response()->json(['success' => 'Data Lapang deleted successfully.']);
+        return response()->json(['success' => 'Data Lapang berhasil dihapus.']);
     }
 
     public function view($id)

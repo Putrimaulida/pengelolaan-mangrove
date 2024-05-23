@@ -68,7 +68,7 @@
         ]
     });
 
-    $('#usersTable').on('click', 'a.delete-users', function(e) {
+    $('#usersTable').on('click', 'button.delete-users', function(e) {
         e.preventDefault();
         var deleteUrl = $(this).data('url');
 
@@ -81,11 +81,12 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.warning) {
-                    alert(data.warning);
+                if (data.success) {
+                    alert(data.success);
+                    location.reload();
                 } else {
                     // Handle success, e.g., reload the DataTable
-                    $('#example').DataTable().ajax.reload();
+                    //$('#example').DataTable().ajax.reload();
                     location.reload();
                 }
             })

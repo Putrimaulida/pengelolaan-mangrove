@@ -26,7 +26,8 @@ class JenisMangroveController extends Controller
              ->addColumn('action', function ($row) {
                  $editUrl = url('/dashboard_admin/jenis_mangrove/edit/' . $row->id);
                  $deleteUrl = url('/dashboard_admin/jenis_mangrove/destroy/' . $row->id);
-                 return '<button type="button" class="btn btn-primary" onclick="window.location.href=\'' . $editUrl . '\'"><i class="fas fa-edit"></i></button> <button type="button" class="btn btn-danger delete-users" data-url="' . $deleteUrl . '"><i class="fas fa-trash-alt"></i></button>';
+                 return '<button type="button" class="btn btn-primary" onclick="window.location.href=\'' . $editUrl . '\'"><i class="fas fa-edit"></i></button> 
+                 <button type="button" class="btn btn-danger delete-users" data-url="' . $deleteUrl . '"><i class="fas fa-trash-alt"></i></button>';
              })
              ->toJson();
      }
@@ -45,8 +46,10 @@ class JenisMangroveController extends Controller
      */
     public function create()
     {
-        return view('admin.mangrove.create');
+        $jenisMangroves = JenisMangrove::select('nama_keluarga')->distinct()->get();
+        return view('admin.mangrove.create', compact('jenisMangroves'));
     }
+    
 
     /**
      * Menyimpan jenis mangrove yang baru dibuat ke dalam database.
@@ -58,19 +61,29 @@ class JenisMangroveController extends Controller
     {
         $validatedData = $request->validated();
 
+        // Periksa apakah nama ilmiah sudah ada
+        if (JenisMangrove::where('nama_ilmiah', $validatedData['nama_ilmiah'])->exists()) {
+            return redirect()->back()->withErrors(['error' => 'Nama ilmiah tersebut sudah ada.'])->withInput();
+        }
+
+        // Tentukan nama_keluarga yang akan digunakan
+        $nama_keluarga = $validatedData['nama_keluarga_select'] ?? $validatedData['nama_keluarga_manual'];
+
         JenisMangrove::create([
-            'nama_keluarga' => $validatedData['nama_keluarga'],
+            'nama_keluarga' => $nama_keluarga,
             'nama_ilmiah' => $validatedData['nama_ilmiah'],
         ]);
 
         return redirect()->route('admin.mangrove')
                         ->with('success', 'Jenis Mangrove berhasil ditambahkan.');
     }
+    
     public function edit($id)
     {
         $jenisMangrove = JenisMangrove::findOrFail($id);
-        return view('admin.mangrove.edit', compact('jenisMangrove'));
-    }
+        $jenisMangroves = JenisMangrove::select('nama_keluarga')->distinct()->get(); // Mengambil data nama_keluarga yang unik
+        return view('admin.mangrove.edit', compact('jenisMangrove', 'jenisMangroves'));
+    } 
 
     public function update(JenisMangroveRequest $request, $id)
     {
@@ -78,8 +91,13 @@ class JenisMangroveController extends Controller
 
         $jenisMangrove = JenisMangrove::findOrFail($id);
 
-        // Update data jenis mangrove
-        $jenisMangrove->nama_keluarga = $validatedData['nama_keluarga'];
+        // Periksa apakah nama ilmiah sudah ada, kecuali untuk data saat ini
+        if (JenisMangrove::where('nama_ilmiah', $validatedData['nama_ilmiah'])->where('id', '!=', $id)->exists()) {
+            return redirect()->back()->withErrors(['error' => 'Nama ilmiah tersebut sudah ada.'])->withInput();
+        }
+
+        // Tentukan nama_keluarga yang akan digunakan
+        $jenisMangrove->nama_keluarga = $validatedData['nama_keluarga_select'] ?? $validatedData['nama_keluarga_manual'];
         $jenisMangrove->nama_ilmiah = $validatedData['nama_ilmiah'];
 
         if ($request->hasFile('image')) {
@@ -93,12 +111,12 @@ class JenisMangroveController extends Controller
         return redirect()->route('admin.mangrove')->with('success', 'Jenis Mangrove berhasil diperbarui.');
     }
 
+
     public function destroy($id)
     {
         $jenisMangrove = JenisMangrove::findOrFail($id);
         $jenisMangrove->delete();
-
-        return redirect()->route('admin.mangrove')->with('success', 'Jenis Mangrove berhasil dihapus.');
+        return response()->json(['success' => 'Jenis mangrove deleted successfully.']);
     }
 
     public function view($id)

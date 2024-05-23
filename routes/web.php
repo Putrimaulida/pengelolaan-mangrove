@@ -7,6 +7,7 @@ use App\Http\Controllers\DataLapangController;
 use App\Http\Controllers\HasilAnalisisController;
 use App\Http\Controllers\HasilAnalisisStakeholderController;
 use App\Http\Controllers\JenisMangroveController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\StakeholderController;
 use App\Http\Controllers\PantaiController;
 use App\Http\Controllers\PantaiStakeholderController;
@@ -25,8 +26,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landingpage.beranda');
+Route::get('/',[
+    LandingPageController::class, 'indexBeranda'
+]);
+Route::prefix('/')->group(function(){
+    Route::get('/countRecommendedBeranda', [LandingPageController::class, 'countRecommendedBeranda']);
+    Route::post('/analisisdatapantai', [LandingPageController::class, 'countRecommendedBeranda'])->name('countRecommendedBeranda');
 });
 
 Auth::routes();
@@ -41,6 +46,7 @@ Route::prefix('dashboard_admin')->middleware(['auth', 'check.role:admin'])->grou
     Route::put('/stakeholder_management/update/{id}', [StakeholderController::class, 'update']);
     Route::get('/stakeholder_management/view', [StakeholderController::class, 'json'])->name('admin.data.stakeholder');
     Route::get('/stakeholder_management', [StakeholderController::class, 'index'])->name('admin.stakeholder');
+    Route::delete('/stakeholder_management/destroy/{id}', [StakeholderController::class, 'destroy'])->name('admin.stakeholder.destroy');
 
     // Jenis Mangrove
     Route::get('/jenis_mangrove', [JenisMangroveController::class, 'index'])->name('admin.mangrove');
@@ -50,6 +56,7 @@ Route::prefix('dashboard_admin')->middleware(['auth', 'check.role:admin'])->grou
     Route::put('/jenis_mangrove/update/{id}', [JenisMangroveController::class, 'update']);
     Route::get('/jenis_mangrove/view', [JenisMangroveController::class, 'json'])->name('admin.data.mangrove');
     Route::get('/jenis_mangrove', [JenisMangroveController::class, 'index'])->name('admin.mangrove');
+    Route::delete('/jenis_mangrove/destroy/{id}', [JenisMangroveController::class, 'destroy'])->name('admin.mangrove.destroy');
 
     // Pantai
     Route::get('/pantai', [PantaiController::class, 'index'])->name('admin.pantai');

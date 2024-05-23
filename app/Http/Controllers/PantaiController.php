@@ -12,29 +12,26 @@ use Illuminate\Support\Facades\Storage;
 
 class PantaiController extends Controller
 {
-
     public function json()
-        {
-            $pantais = Pantais::select(['id', 'nama_pantai', 'lokasi_pantai', 'longitude', 'latitude', 'komen', 'image', 'video'])
-                ->get();
-            $index = 1;
-            return DataTables::of($pantais)
-                ->addColumn('DT_RowIndex', function ($data) use (&$index) {
-                    return $index++; // Menambahkan nomor urutan baris
-                })
-                ->addColumn('action', function ($row) {
-                    $editUrl = url('/dashboard_admin/pantai/edit/' . $row->id);
-                    $viewUrl = url('/dashboard_admin/pantai/view/' . $row->id);
-                    $deleteUrl = url('/dashboard_admin/pantai/destroy/' . $row->id); // Tambahkan URL untuk view
-                    $accUrl = url('/dashboard_admin/pantai/verifikasilaporan/' . $row->id);
-                    return '<button type="button" class="btn btn-warning btn-sm" onclick="window.location.href=\'' . $editUrl . '\'"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-info btn-sm" onclick="window.location.href=\'' . $viewUrl . '\'"><i class="fas fa-list"></i></button>
-                            <button type="button" class="btn btn-danger btn-sm delete-users" data-url="' . $deleteUrl . '"><i class="fas fa-trash-alt"></i></button>
-                            <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href=\'' . $accUrl . '\'"><i class="fas fa-check"></i></button>';
-                    // Tukar posisi tombol view dengan tombol delete
-                })
-                ->toJson();
-        }
+    {
+        $pantais = Pantais::select(['id', 'nama_pantai', 'lokasi_pantai', 'longitude', 'latitude', 'komen', 'image', 'video'])->get();
+        $index = 1;
+        return DataTables::of($pantais)
+            ->addColumn('DT_RowIndex', function ($data) use (&$index) {
+                return $index++; // Menambahkan nomor urutan baris
+            })
+            ->addColumn('action', function ($row) {
+                $editUrl = url('/dashboard_admin/pantai/edit/' . $row->id);
+                $viewUrl = url('/dashboard_admin/pantai/view/' . $row->id);
+                $deleteUrl = url('/dashboard_admin/pantai/destroy/' . $row->id);
+                $accUrl = url('/dashboard_admin/pantai/verifikasilaporan/' . $row->id);
+                return '<button type="button" class="btn btn-warning btn-sm mb-2" onclick="window.location.href=\'' . $editUrl . '\'"><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-info btn-sm mb-2" onclick="window.location.href=\'' . $viewUrl . '\'"><i class="fas fa-list"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm delete-users mb-2" data-url="' . $deleteUrl . '"><i class="fas fa-trash-alt"></i></button>
+                        <button type="button" class="btn btn-secondary btn-sm mb-2" onclick="window.location.href=\'' . $accUrl . '\'"><i class="fas fa-check"></i></button>';
+            })
+            ->toJson();
+    }
 
     public function index()
     {
@@ -59,6 +56,11 @@ class PantaiController extends Controller
             'image' => 'required|file|max:2048', // Validasi ukuran maksimum gambar
             'video' => 'required|file|max:10000', // Validasi ukuran maksimum video
         ]);
+
+        // Cek apakah nama pantai sudah ada
+        if (Pantais::where('nama_pantai', $validatedData['nama_pantai'])->exists()) {
+            return redirect()->back()->withErrors(['nama_pantai' => 'Nama pantai sudah terdaftar.'])->withInput();
+        }
 
         // Mengunggah file gambar
         if ($request->hasFile('image')) {
@@ -175,7 +177,6 @@ class PantaiController extends Controller
     public function destroy(string $id)
     {
         $pantai = Pantais::findOrFail($id);
-
         $pantai->delete();
         return response()->json(['success' => 'Pantai deleted successfully.']);
     }

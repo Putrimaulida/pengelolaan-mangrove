@@ -19,16 +19,35 @@
 
                         <form method="POST" action="{{ url('/dashboard_admin/jenis_mangrove/create/store') }}" enctype="multipart/form-data">
                             @csrf
-                            <!-- Nama Pantai -->
-                            <div class="form-group">
-                                <label for="nama_keluarga">Keluarga:</label>
-                                <input type="text" name="nama_keluarga" id="nama_keluarga" class="form-control" required>
-                            </div>
-                            <!-- Lokasi -->
-                            <div class="form-group">
+                            @if($jenisMangroves->isNotEmpty())
+                                <!-- Nama Keluarga -->
+                                <div class="form-group">
+                                    <label for="nama_keluarga_select">Pilih Keluarga:</label>
+                                    <select name="nama_keluarga_select" id="nama_keluarga_select" class="form-control">
+                                        <option value="">-- Pilih Keluarga --</option>
+                                        @foreach($jenisMangroves as $jenisMangrove)
+                                            <option value="{{ $jenisMangrove->nama_keluarga }}">{{ $jenisMangrove->nama_keluarga }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group mt-2">
+                                    <label for="nama_keluarga_manual">Atau Masukkan Keluarga Baru:</label>
+                                    <input type="text" name="nama_keluarga_manual" id="nama_keluarga_manual" class="form-control">
+                                </div>
+                            @else
+                                <div class="form-group mt-2">
+                                    <label for="nama_keluarga_manual">Masukkan Keluarga:</label>
+                                    <input type="text" name="nama_keluarga_manual" id="nama_keluarga_manual" class="form-control" required>
+                                </div>
+                            @endif
+
+                            <!-- Nama Ilmiah -->
+                            <div class="form-group mt-2">
                                 <label for="nama_ilmiah">Nama Ilmiah:</label>
-                                <input type="text-area" name="nama_ilmiah" id="nama_ilmiah" class="form-control" required>
+                                <input type="text" name="nama_ilmiah" id="nama_ilmiah" class="form-control" required>
                             </div>
+
                             <!-- Submit Button -->
                             <div class="row mt-3">
                                 <div class="col-md-12">
@@ -43,4 +62,23 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#nama_keluarga_select').on('change', function() {
+                if ($(this).val() !== "") {
+                    $('#nama_keluarga_manual').val('').prop('disabled', true);
+                } else {
+                    $('#nama_keluarga_manual').prop('disabled', false);
+                }
+            });
+
+            $('#nama_keluarga_manual').on('input', function() {
+                if ($(this).val() !== "") {
+                    $('#nama_keluarga_select').val('').prop('disabled', true);
+                } else {
+                    $('#nama_keluarga_select').prop('disabled', false);
+                }
+            });
+        });
+    </script>
 @endsection

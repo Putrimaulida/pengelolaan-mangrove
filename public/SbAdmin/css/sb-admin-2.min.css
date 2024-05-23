@@ -21,7 +21,7 @@
     --teal: #20c9a6;
     --cyan: #36b9cc;
     --white: #fff;
-    --gray: #858796;
+    --gray: #4d4e54;
     --gray-dark: #5a5c69;
     --primary: #4e73df;
     --secondary: #858796;
@@ -72,7 +72,7 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #858796;
+    color: #3f4044;
     text-align: left;
     background-color: #fff
 }
@@ -1776,7 +1776,7 @@ pre code {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #858796
+    color: #47484e
 }
 
 .table td,

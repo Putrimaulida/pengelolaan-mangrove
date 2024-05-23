@@ -82,4 +82,12 @@ class StakeholderController extends Controller
         return redirect()->route('admin.stakeholder')->with('success', 'User updated successfully.');
     }
 
+    public function destroy(string $id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('admin.stakeholder')->with('success', 'User deleted successfully.');
+        //return response()->json(['success' => 'Stakeholder deleted successfully.']);
+    }
+
 }

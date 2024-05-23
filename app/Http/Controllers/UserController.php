@@ -55,4 +55,17 @@ class UserController extends Controller
         // Jika perubahan profil berhasil, kirimkan respons JSON ke klien
         return Response::json(['success' => true]);
     }
+
+    public function delete(Request $request)
+    {
+        // Mendapatkan pengguna yang saat ini terotentikasi
+        $user = auth()->user();
+
+        // Menghapus pengguna dari database
+        $user->delete();
+
+        // Memberikan respons ke klien
+        return Response::json(['success' => true, 'message' => 'User berhasil dihapus']);
+    }
+
 }

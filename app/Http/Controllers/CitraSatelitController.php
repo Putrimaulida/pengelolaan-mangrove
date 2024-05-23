@@ -89,16 +89,24 @@ class CitraSatelitController extends Controller
         $request->validate([
             'tahun' => 'required|integer',
             'luasan' => 'required|numeric',
+            'pantai_id' => 'required|exists:pantais,id', // Pastikan pantai_id ada di tabel pantais
         ]);
+
+        // Periksa apakah kombinasi pantai_id dan tahun sudah ada
+        if (CitraSatelit::where('pantai_id', $request->pantai_id)
+                        ->where('tahun', $request->tahun)
+                        ->exists()) {
+            return redirect()->back()->withErrors(['error' => 'Data citra satelit dengan pantai dan tahun tersebut sudah ada.'])->withInput();
+        }
 
         CitraSatelit::create([
             'tahun' => $request->tahun,
             'luasan' => $request->luasan,
-            'pantai_id' =>$request->pantai_id,
+            'pantai_id' => $request->pantai_id,
         ]);
 
         return redirect()->route('admin.citra')
-                         ->with('success', 'Citra Satelit created successfully.');
+                        ->with('success', 'Citra Satelit berhasil ditambahkan.');
     }
 
     /**
@@ -125,17 +133,26 @@ class CitraSatelitController extends Controller
     public function update(CitraSatelitRequest $request, $id)
     {
         $request->validate([
-            'pantai_id' => 'required',
-            'tahun' => 'required',
-            'luasan' => 'required'
+            'pantai_id' => 'required|exists:pantais,id', // Pastikan pantai_id ada di tabel pantais
+            'tahun' => 'required|integer',
+            'luasan' => 'required|numeric',
         ]);
-    
+
         $dataCitra = CitraSatelit::findOrFail($id);
+
+        // Periksa apakah kombinasi pantai_id dan tahun sudah ada, kecuali data saat ini
+        if (CitraSatelit::where('pantai_id', $request->pantai_id)
+                        ->where('tahun', $request->tahun)
+                        ->where('id', '!=', $id)
+                        ->exists()) {
+            return redirect()->back()->withErrors(['error' => 'Data citra satelit dengan pantai dan tahun tersebut sudah ada.'])->withInput();
+        }
+
         $dataCitra->pantai_id = $request->input('pantai_id');
         $dataCitra->tahun = $request->input('tahun');
         $dataCitra->luasan = $request->input('luasan');
         $dataCitra->save();
-    
+
         return redirect()->route('admin.citra')->with('success', 'Data citra berhasil diupdate!');
     }
 
@@ -149,7 +166,6 @@ class CitraSatelitController extends Controller
     {
         $citraSatelit = CitraSatelit::findOrFail($id);
         $citraSatelit->delete();
-
         return response()->json(['success' => 'Citra Satelit deleted successfully.']);
     }
 

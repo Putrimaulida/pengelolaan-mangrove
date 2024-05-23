@@ -3,132 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\CitraSatelit;
-use App\Models\AnalisisData;
 use App\Models\DataLapang;
-use Illuminate\Http\Request;
+use App\Models\JenisMangrove;
 use App\Models\Pantais;
-use Yajra\DataTables\DataTables;
+use Illuminate\Http\Request;
 
-class HasilAnalisisController extends Controller
+class LandingPageController extends Controller
 {
-    /**
-     * Menampilkan daftar jenis mangrove.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    public function json()
-    {
-        $users = AnalisisData::select(['id', 'pantai_id'])
-            ->with('pantai:id,nama_pantai') // Load relasi pantai
-            ->get();
-        $index = 1;
-        return DataTables::of($users)
-            ->addColumn('DT_RowIndex', function ($data) use (&$index) {
-                return $index++; // Menambahkan nomor urutan baris
-            })
-            ->toJson();
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    public function indexBeranda(){
+        $dataPantai = Pantais::all();
+        $dataMangrove = JenisMangrove::all();
         $dataRekomendasiPantai = Pantais::all();
         $allYears = CitraSatelit::select('tahun')->distinct()->pluck('tahun');
-
-        return view('admin.analisis.index', compact('dataRekomendasiPantai', 'allYears'));
+        return view('landingpage.beranda', compact('dataPantai', 'dataMangrove', 'dataRekomendasiPantai', 'allYears'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.analisis.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'pantai_id' => 'required',
-        ]);
-
-        AnalisisData::create($request->all());
-
-        return redirect()->route('admin.analisis')
-            ->with('success', 'Rekomendasi created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Rekomendasi  $rekomendasi
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AnalisisData $analisis)
-    {
-        return view('analisis.show', compact('analisis'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Rekomendasi  $rekomendasi
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $dataAnalisis = AnalisisData::findOrFail($id);
-        $dataPantai = Pantais::pluck('nama_pantai', 'id'); // Mengambil daftar pantai untuk dropdown
-
-        return view('admin.analisis.index', compact('dataPantai', 'dataAnalisis'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rekomendasi  $rekomendasi
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AnalisisData $rekomendasi)
-    {
-        $request->validate([
-            'pantai_id' => 'required',
-        ]);
-
-        $rekomendasi->update($request->all());
-
-        return redirect()->route('analisis.index')
-            ->with('success', 'Analisis data updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Rekomendasi  $rekomendasi
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(AnalisisData $analisis)
-    {
-        $analisis->delete();
-
-        return redirect()->route('analisis.index')
-            ->with('success', 'Rekomendasi deleted successfully');
-    }
-
-    public function countRecommended(Request $request)
+    public function countRecommendedBeranda(Request $request)
     {
         if ($request->pantai_id == 'all') {
             if ($request->tahun == 'all') {
@@ -284,7 +173,6 @@ class HasilAnalisisController extends Controller
             ]
         ]);
     }
-
     private function generateRandomColor()
     {
         $r = mt_rand(0, 255);
